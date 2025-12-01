@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CelestiumMC | O Reino Celestial</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ESTILOS GERAIS (MODERNOS) --- */
+        :root {
+            --cor-primaria: #673ab7;
+            --cor-acento: #ffeb3b;
+            --cor-fundo: #121212;
+            --cor-texto: #f4f4f4;
+            --gradiente-hero: linear-gradient(135deg, #4a148c 0%, #121212 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- HEADER (Igual à Loja) --- */
+        header {
+            background: rgba(18, 18, 18, 0.95);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--cor-primaria);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo img { height: 50px; }
+
+        nav { display: flex; gap: 30px; }
+        
+        .nav-link {
+            color: #aaa;
+            font-weight: 500;
+            position: relative;
+        }
+        .nav-link.active, .nav-link:hover { color: #fff; }
+        
+        /* Efeito de linha embaixo do link */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--cor-acento);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .btn-loja {
+            background-color: var(--cor-primaria);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(103, 58, 183, 0.5);
+        }
+        .btn-loja:hover { background-color: #7b4ebf; box-shadow: 0 0 20px rgba(103, 58, 183, 0.8); }
+
+        .btn-discord {
+            background-color: #5865F2;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        /* --- HERO SECTION (A Mágica Acontece Aqui) --- */
+        .hero-section {
+            height: 100vh;
+            background: radial-gradient(circle at center, #2e1a47 0%, #121212 70%), url('imagens/fundo-pattern.png'); /* Adicione um pattern sutil se tiver */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 80px; /* Compensa o header fixo */
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1280px;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        /* Botão de IP */
+        .ip-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--cor-primaria);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-family: monospace;
+            font-size: 1.1em;
+            color: var(--cor-acento);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+        .ip-badge:hover {
+            background: var(--cor-primaria);
+            color: #fff;
+            box-shadow: 0 0 15px var(--cor-primaria);
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .hero-content h1 span { color: var(--cor-primaria); }
+
+        .hero-content p {
+            font-size: 1.2em;
+            color: #ccc;
+            margin-bottom: 40px;
+        }
+
+        .btn-cta {
+            background: var(--cor-acento);
+            color: #121212;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: 800;
+            border-radius: 5px;
+            display: inline-block;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(255, 235, 59, 0.4);
+        }
+        .btn-cta:hover {
+            transform: scale(1.05);
+            background: #fff;
+        }
+
+        /* O Dragão */
+        .hero-dragon-container {
+            position: relative;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-dragon {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(103, 58, 183, 0.6));
+            animation: flutuar 4s ease-in-out infinite;
+        }
+
+        @keyframes flutuar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        /* --- SOBRE --- */
+        .section-padding { padding: 80px 0; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--cor-primaria);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .about-box {
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid var(--cor-primaria);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            font-size: 1.1em;
+            color: #ddd;
+        }
+
+        /* --- WIKI CARDS --- */
+        .wiki-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .wiki-card {
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .wiki-card:hover {
+            border-color: var(--cor-primaria);
+            transform: translateY(-5px);
+        }
+        .wiki-card h3 { color: var(--cor-acento); margin-bottom: 10px; font-size: 1.5em; }
+        .wiki-card i { font-size: 2em; color: var(--cor-primaria); margin-bottom: 15px; display: block; }
+
+        /* --- DESTAQUES (Ranking) --- */
+        .ranking-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .ranking-card {
+            background: #1e1e1e;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .ranking-header {
+            padding: 20px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        /* Cores dos Headers dos Rankings */
+        .header-gold { background: linear-gradient(45deg, #FFD700, #FDB931); }
+        .header-silver { background: linear-gradient(45deg, #E0E0E0, #BDBDBD); }
+        .header-bronze { background: linear-gradient(45deg, #CD7F32, #A0522D); }
+
+        .ranking-list { padding: 20px; }
+        .ranking-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
+            font-size: 0.95em;
+        }
+        .ranking-list li:last-child { border-bottom: none; }
+        
+        .rank-pos {
+            font-weight: bold;
+            margin-right: 10px;
+            width: 25px;
+            display: inline-block;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #0a0a0a;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+        }
+        footer p { color: #666; font-size: 0.9em; }
+        footer a { color: var(--cor-primaria); }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .hero-container { flex-direction: column-reverse; text-align: center; }
+            .hero-content h1 { font-size: 2.5em; }
+            .hero-dragon-container { width: 80%; margin-bottom: 30px; }
+            nav { display: none; } /* Simples hide para mobile, ideal seria um menu hambúrguer */
+            header { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="nav-link active">Início</a>
+            <a href="#wiki" class="nav-link">Wiki</a>
+            <a href="loja.html" class="nav-link">Loja</a>
+        </nav>
+        
+        <div class="logo">
+            <img src="imagens/celestiumlogo.jpg" alt="CelestiumMC">
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <a href="loja.html" class="btn-loja"><i class="fa-solid fa-cart-shopping"></i> Loja</a>
+            <a href="#" class="btn-discord"><i class="fa-brands fa-discord"></i></a>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="ip-badge" onclick="copyIp()" id="ipBtn">
+                    <i class="fa-solid fa-wifi"></i> 
+                    <span id="ipText">celestium.blazebr.com</span>
+                    <i class="fa-regular fa-copy" style="margin-left: 5px; opacity: 0.7;"></i>
+                </div>
+
+                <h1>A Lenda do <br><span>CelestiumMC</span></h1>
+                <p>O servidor definitivo de Survival e RankUP com economia balanceada, PvP fluido e uma comunidade que não para de crescer.</p>
+                
+                <a href="loja.html" class="btn-cta">Começar Aventura</a>
+            </div>
+
+            <div class="hero-dragon-container">
+                <img src="imagens/dragao.png" alt="Ender Dragon" class="hero-dragon">
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">O Reino</h2>
+            <div class="about-box">
+                <p>
+                    O <strong>CelestiumMC</strong> transcende a experiência tradicional. Com sistemas de magia rúnica, 
+                    mercado negro dinâmico e facções de guerra, cada jogador escreve sua própria história. 
+                    Seja você um guerreiro sanguinário ou um magnata da economia, seu lugar é aqui.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="wiki" class="section-padding" style="background: #181818;">
+        <div class="container">
+            <h2 class="section-title">Sistemas Únicos</h2>
+            <div class="wiki-grid">
+                <div class="wiki-card">
+                    <i class="fa-solid fa-scroll"></i>
+                    <h3>Magia & Runas</h3>
+                    <p>Descubra encantamentos proibidos que alteram o rumo das batalhas PvP.</p>
+                </div>
+                <div class="wiki-card">
+                    <i class="fa-solid fa-users-gear"></i>
+                    <h3>Clãs de Guerra</h3>
+                    <p>Sistema de dominação de territórios com recompensas semanais em Cash.</p>
+                </div>
+                <div class="wiki-card">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                    <h3>Economia Real</h3>
+                    <p>Mercado controlado pelos jogadores. A inflação é sua inimiga ou aliada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Hall da Fama (Mensal)</h2>
+            <div class="ranking-grid">
+                
+                <div class="ranking-card">
+                    <div class="ranking-header header-gold">
+                        <i class="fa-solid fa-trophy"></i> Top Clãs
+                    </div>
+                    <ul class="ranking-list">
+                        <li><span><span class="rank-pos" style="color: gold;">#1</span> A Arte do Crime</span> <span>3000 pts</span></li>
+                        <li><span><span class="rank-pos" style="color: silver;">#2</span> Farmers</span> <span>2450 pts</span></li>
+                        <li><span><span class="rank-pos" style="color: #cd7f32;">#3</span> Angels</span> <span>1800 pts</span></li>
+                    </ul>
+                </div>
+
+                <div class="ranking-card">
+                    <div class="ranking-header header-silver">
+                        <i class="fa-solid fa-check-to-slot"></i> Top Votos
+                    </div>
+                    <ul class="ranking-list">
+                        <li><span><span class="rank-pos">#1</span> Inho</span> <span>380 Votos</span></li>
+                        <li><span><span class="rank-pos">#2</span> Guest</span> <span>355 Votos</span></li>
+                        <li><span><span class="rank-pos">#3</span> Medusa</span> <span>330 Votos</span></li>
+                    </ul>
+                </div>
+
+                <div class="ranking-card">
+                    <div class="ranking-header header-bronze">
+                        <i class="fa-solid fa-hand-holding-dollar"></i> Magnatas
+                    </div>
+                    <ul class="ranking-list">
+                        <li><span><span class="rank-pos">#1</span> Golden_Reaper</span> <span>R$ 750</span></li>
+                        <li><span><span class="rank-pos">#2</span> xxtention</span> <span>R$ 500</span></li>
+                        <li><span><span class="rank-pos">#3</span> SkyLine</span> <span>R$ 300</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CelestiumMC. Todos os direitos reservados.</p>
+            <p style="margin-top: 10px;">
+                <a href="#">Termos</a> | <a href="#">Discord</a> | <a href="#">Status</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Função para copiar IP com feedback visual
+        function copyIp() {
+            const ip = "celestium.blazebr.com";
+            navigator.clipboard.writeText(ip).then(() => {
+                const btn = document.getElementById("ipBtn");
+                const originalContent = btn.innerHTML;
+                
+                // Muda o estilo e texto temporariamente
+                btn.style.borderColor = "#4caf50";
+                btn.style.color = "#4caf50";
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> IP Copiado!';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.style.borderColor = "var(--cor-primaria)";
+                    btn.style.color = "var(--cor-acento)";
+                }, 2000);
+            });
+        }
+
+        // Script de rolagem suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

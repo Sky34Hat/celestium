@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CelestiumMC | Loja Oficial</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="imagens/celestiumlogo.jpg" alt="Logo CelestiumMC">
+        </div>
+        <nav>
+            <a href="index.html" class="nav-link">Início</a>
+            <a href="#" class="nav-link active">Loja</a>
+            <a href="#" class="nav-link">Wiki</a>
+        </nav>
+        <a href="#" class="btn-loja">
+            <i class="fa-solid fa-cart-shopping"></i> Carrinho <span class="cart-count">0</span>
+        </a>
+    </header>
+
+    <section class="store-hero"></section>
+
+    <div class="container store-container">
+        
+        <aside class="sidebar">
+            <div class="category-menu">
+                <h3><i class="fa-solid fa-layer-group"></i> Categorias</h3>
+                <ul>
+                    <li><a href="#ranks"><i class="fa-solid fa-crown"></i> VIPs & Ranks</a></li>
+                    <li><a href="#cash"><i class="fa-solid fa-gem"></i> Cash & Moedas</a></li>
+                    <li><a href="#keys"><i class="fa-solid fa-key"></i> Chaves</a></li>
+                    <li><a href="#unban"><i class="fa-solid fa-gavel"></i> Unban</a></li>
+                </ul>
+                
+                <div class="support-box">
+                    <p>Dúvidas na compra?</p>
+                    <a href="#" class="btn-discord">Suporte Discord</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="products-area">
+
+            <div id="ranks">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-star" style="color: var(--cor-acento);"></i> Ranks VIP</h2>
+                    <div class="line"></div>
+                </div>
+
+                <div class="products-grid">
+                    
+                    <div class="product-card rank-nobre">
+                        <div class="card-image">
+                            <img src="imagens/nobre.jpg" alt="VIP Nobre">
+                        </div>
+                        <div class="card-info">
+                            <div>
+                                <h3>VIP Nobre</h3>
+                                <p class="desc">30 Dias de vantagens iniciais.</p>
+                            </div>
+                            <div>
+                                <div class="price-tag"><span>R$</span> 24,90</div>
+                                <button class="btn-buy"><i class="fa-solid fa-cart-plus"></i> Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card rank-lord">
+                        <span class="badge">POPULAR</span>
+                        <div class="card-image">
+                            <img src="imagens/lorde.jpg" alt="VIP Lorde">
+                        </div>
+                        <div class="card-info">
+                            <div>
+                                <h3>VIP Lorde</h3>
+                                <p class="desc">Kit P4, Fly no Lobby e mais.</p>
+                            </div>
+                            <div>
+                                <div class="price-tag"><span>R$</span> 34,90</div>
+                                <button class="btn-buy"><i class="fa-solid fa-cart-plus"></i> Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card rank-imperador">
+                        <span class="badge badge-legendary">LENDÁRIO</span>
+                        <div class="card-image">
+                            <img src="imagens/imperador.jpg" alt="VIP Imperador">
+                        </div>
+                        <div class="card-info">
+                            <div>
+                                <h3>VIP Imperador</h3>
+                                <p class="desc">Comandos exclusivos e Kits OP.</p>
+                            </div>
+                            <div>
+                                <div class="price-tag"><span>R$</span> 49,90</div>
+                                <button class="btn-buy"><i class="fa-solid fa-cart-plus"></i> Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div id="cash" style="margin-top: 60px;">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-coins" style="color: #4caf50;"></i> Cash</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="placeholder-box">
+                    Selecione um pacote de cash...
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 CelestiumMC. Todos os direitos reservados.</p>
+        <p class="footer-note">Não somos afiliados à Mojang AB.</p>
+    </footer>
+
+</body>
+</html>

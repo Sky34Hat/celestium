@@ -1,0 +1,248 @@
+/* =====================================================
+   CELESTIUM MC - ESTILO GLOBAL (FINAL)
+   Tema: Roxo, Dourado, Dark Mode, Glassmorphism
+=====================================================
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Paleta de Cores */
+    --cor-primaria: #673ab7;      
+    --cor-primaria-dark: #512da8; 
+    --cor-acento: #ffeb3b;        
+    
+    /* Fundos */
+    --cor-fundo: #121212;         
+    --cor-fundo-secundario: #1e1e1e; 
+    --cor-header: rgba(18, 18, 18, 0.95); 
+    
+    /* Texto */
+    --cor-texto: #f4f4f4;
+    --cor-texto-suave: #aaaaaa;
+
+    /* Efeitos */
+    --sombra-padrao: 0 10px 30px rgba(0,0,0,0.5);
+    --borda-suave: 1px solid rgba(255,255,255,0.05);
+}
+
+/* --- RESET & GERAL --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* --- HEADER --- */
+header {
+    background: var(--cor-header);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--cor-primaria);
+    position: sticky; 
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.logo img { height: 50px; transition: 0.3s; }
+.logo img:hover { transform: scale(1.05); }
+
+nav { display: flex; gap: 30px; }
+
+.nav-link {
+    color: var(--cor-texto-suave);
+    font-weight: 500;
+    position: relative;
+    font-size: 1.05em;
+}
+.nav-link:hover, .nav-link.active { color: #fff; }
+.nav-link::after {
+    content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
+    background-color: var(--cor-acento); transition: width 0.3s;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+/* Botões do Header */
+.btn-loja, .btn-discord {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
+    border-radius: 6px; font-weight: bold; font-size: 0.9em; transition: 0.3s;
+}
+.btn-loja {
+    background-color: var(--cor-primaria); color: white;
+    box-shadow: 0 0 10px rgba(103, 58, 183, 0.4);
+}
+.btn-loja:hover {
+    background-color: var(--cor-primaria-dark);
+    box-shadow: 0 0 20px rgba(103, 58, 183, 0.7); transform: translateY(-2px);
+}
+.cart-count {
+    background: var(--cor-acento); color: #000; padding: 2px 6px;
+    border-radius: 50%; font-size: 0.8em; margin-left: 5px;
+}
+
+/* --- BANNER DA LOJA (CONFIGURAÇÃO ESPECIAL) --- */
+.store-hero {
+    /* Aqui puxamos a imagem que você gerou. Salve como banner-loja.jpg */
+    background: linear-gradient(to bottom, rgba(18, 18, 18, 0.1), #121212), 
+                url('imagens/banner.png') no-repeat center center;
+    background-size: cover;
+    
+    /* Altura ajustada para mostrar bem o castelo e logo */
+    height: 450px; 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    border-bottom: 4px solid var(--cor-primaria);
+    margin-bottom: 40px;
+}
+
+/* --- ESTRUTURA DA LOJA --- */
+.store-container {
+    display: flex; gap: 40px;
+    max-width: 1280px; margin: 0 auto; padding: 0 20px 60px 20px;
+}
+.container { width: 90%; max-width: 1280px; margin: 0 auto; }
+
+/* Sidebar */
+.sidebar { width: 280px; flex-shrink: 0; }
+
+.category-menu {
+    background: rgba(30, 30, 30, 0.9);
+    border-radius: 15px; padding: 25px;
+    position: sticky; top: 100px;
+    border: var(--borda-suave);
+    box-shadow: var(--sombra-padrao);
+}
+.category-menu h3 {
+    color: #fff; margin-bottom: 20px; font-size: 1.2em;
+    border-bottom: 2px solid var(--cor-primaria); padding-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+}
+.category-menu a {
+    display: flex; align-items: center; padding: 12px 15px;
+    color: #ccc; background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+    border-radius: 8px; margin-bottom: 10px; font-weight: 500;
+}
+.category-menu a i { width: 25px; color: var(--cor-primaria); }
+.category-menu a:hover {
+    background: var(--cor-primaria); color: #fff; transform: translateX(5px);
+}
+.category-menu a:hover i { color: var(--cor-acento); }
+
+.support-box {
+    margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.3);
+    border-radius: 8px; text-align: center;
+}
+.support-box p { color: #888; font-size: 0.9em; margin-bottom: 10px; }
+.btn-discord {
+    background-color: #5865F2; color: white; width: 100%; justify-content: center;
+}
+.btn-discord:hover { background-color: #4752c4; transform: translateY(-2px); }
+
+/* Grid de Produtos */
+.products-area { flex-grow: 1; }
+
+.section-header { margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
+.section-header h2 { font-size: 2em; color: #fff; }
+.line { flex-grow: 1; height: 2px; background: rgba(255,255,255,0.1); }
+
+.products-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px;
+}
+
+/* Card Produto */
+.product-card {
+    background: #1e1e1e; border-radius: 15px; overflow: hidden;
+    position: relative; transition: all 0.4s ease;
+    border: var(--borda-suave); display: flex; flex-direction: column;
+}
+.product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.6); }
+
+.badge {
+    position: absolute; top: 15px; right: 15px;
+    background: var(--cor-acento); color: #000; padding: 4px 10px;
+    font-size: 0.7em; font-weight: 800; border-radius: 20px; z-index: 2;
+}
+.badge-legendary { background: #ff3d00; color: #fff; }
+
+.card-image {
+    height: 180px; width: 100%; background: #151515;
+    display: flex; align-items: center; justify-content: center;
+}
+.card-image img {
+    max-width: 80%; max-height: 80%; transition: 0.5s ease;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+}
+.product-card:hover .card-image img { transform: scale(1.1) rotate(3deg); }
+
+.card-info {
+    padding: 20px; text-align: center; flex-grow: 1;
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.card-info h3 { font-size: 1.3em; margin-bottom: 5px; font-weight: 700; color: #fff; }
+.desc { color: #aaa; font-size: 0.9em; }
+
+.price-tag {
+    display: block; font-size: 1.8em; font-weight: 700; color: #fff; margin: 15px 0;
+}
+.price-tag span { font-size: 0.6em; color: #888; font-weight: 400; vertical-align: text-top; }
+
+.btn-buy {
+    background: transparent; border: 2px solid var(--cor-primaria); color: #fff;
+    padding: 10px; width: 100%; border-radius: 8px; font-weight: 600;
+    text-transform: uppercase; cursor: pointer; transition: 0.3s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-buy:hover { background: var(--cor-primaria); box-shadow: 0 0 15px var(--cor-primaria); }
+
+/* Estilos de Ranks */
+.rank-nobre { border-bottom: 3px solid #76ff03; }
+.rank-nobre h3 { color: #76ff03; }
+.rank-nobre:hover { border-color: #76ff03; box-shadow: 0 10px 30px rgba(118, 255, 3, 0.2); }
+
+.rank-lord { border-bottom: 3px solid #00bcd4; }
+.rank-lord h3 { color: #00bcd4; }
+.rank-lord:hover { border-color: #00bcd4; box-shadow: 0 10px 30px rgba(0, 188, 212, 0.2); }
+
+.rank-imperador { border-bottom: 3px solid #ff3d00; }
+.rank-imperador h3 { color: #ff3d00; }
+.rank-imperador:hover { border-color: #ff3d00; box-shadow: 0 10px 30px rgba(255, 61, 0, 0.2); }
+.rank-imperador .btn-buy { background: #ff3d00; border-color: #ff3d00; color: #000; }
+.rank-imperador .btn-buy:hover { background: #fff; color: #ff3d00; }
+
+.placeholder-box {
+    text-align: center; color: #666; padding: 40px;
+    border: 1px dashed #333; border-radius: 10px;
+}
+
+/* --- FOOTER --- */
+footer {
+    background: #0a0a0a; padding: 40px 0; text-align: center;
+    margin-top: 50px; border-top: 1px solid #333;
+}
+.footer-note { font-size: 0.8em; color: #666; margin-top: 5px; }
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 900px) {
+    header { justify-content: center; flex-wrap: wrap; gap: 10px; }
+    nav { display: none; } 
+    .store-container { flex-direction: column; }
+    .sidebar { width: 100%; }
+    .category-menu { position: static; }
+}
